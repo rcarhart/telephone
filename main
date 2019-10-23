@@ -1,0 +1,26 @@
+import java.util.*;
+class Main {
+  public static void main(String[] args) {
+    
+    //Constructor to create a new instance of the telephone
+    Telephone redPhone = new Telephone();
+    
+    
+    Scanner scanner = new Scanner(System.in); // scanner to get user input
+    System.out.println("Enter a telephone number");
+    String telephoneNumber = scanner.nextLine(); // intake the user telephone number as a String
+    
+    //determine if user entered phone Number was entered in the correct format
+    if(redPhone.isFormatted(telephoneNumber) == true){
+       //unformat the string
+      redPhone.unformat(telephoneNumber);
+      
+      //take the unformatted string and translate any characters to numbers then print out the results.
+       System.out.println(redPhone.translator(telephoneNumber));
+    } else {
+      
+      System.out.println(redPhone.translator(telephoneNumber));
+    }
+      
+  }
+}
