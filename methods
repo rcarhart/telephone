@@ -1,0 +1,91 @@
+import java.util.*;
+class Telephone {
+  
+  String telephoneNumber; //user entered telphone number
+  StringBuilder telephone = new StringBuilder();//stringBuilder object to convert telephone nuumber to an object.
+  int formattedTelephoneNumberLength = 12;// the correct length for a formatted telephone number
+
+  
+	/** Method that iterates through the telephoneNumber. Then determines if the character is a digit or a not. If it is a 
+    digit it appends to the object. If not it detemines what character it is then appends the corresponging number
+    @param telephoneNumber as a string. 
+    */
+  public String translator(String telephoneNumber){
+    
+    telephoneNumber = telephoneNumber.toUpperCase(); //makes the user entered string all uppercase
+    
+    //loop through the telephoneNumber length
+    for(int i=0; i<telephoneNumber.length(); i++){
+      
+      //determine if character is a digit
+      if(Character.isDigit(telephoneNumber.charAt(i))){
+        
+        telephone.append(telephoneNumber.charAt(i)); //append to stringbuilder if it is a digit
+        
+        
+        //detemines what character it is then appends the corresponging number to the stringbuilder object
+      } else if(telephoneNumber.charAt(i) == 'A' && telephoneNumber.charAt(i) == 'B' &&  telephoneNumber.charAt(i) == 'C') {
+        	
+              telephone.append(2);
+      } else if(telephoneNumber.charAt(i) == 'D' || telephoneNumber.charAt(i) == 'E' ||  telephoneNumber.charAt(i) == 'F'){
+        	telephone.append(3);
+      } else if(telephoneNumber.charAt(i) == 'G' || telephoneNumber.charAt(i) == 'H' ||  telephoneNumber.charAt(i) == 'I'){
+        	telephone.append(4);
+      } else if(telephoneNumber.charAt(i) == 'J' || telephoneNumber.charAt(i) == 'K' ||  telephoneNumber.charAt(i) == 'L'){
+        telephone.append(5);
+      } else if(telephoneNumber.charAt(i) == 'M' || telephoneNumber.charAt(i) == 'N' ||  telephoneNumber.charAt(i) == 'O'){
+        telephone.append(6);
+      } else if(telephoneNumber.charAt(i) == 'P' || telephoneNumber.charAt(i) == 'Q' ||  telephoneNumber.charAt(i) == 'R'){
+        telephone.append(7);
+      } else if(telephoneNumber.charAt(i) == 'T' || telephoneNumber.charAt(i) == 'U' ||  telephoneNumber.charAt(i) == 'V'){
+        telephone.append(8);
+      } else if(telephoneNumber.charAt(i) == 'W' || telephoneNumber.charAt(i) == 'X' ||  telephoneNumber.charAt(i) == 'Y' ||  telephoneNumber.charAt(i) == 'Z'){
+        telephone.append(9);
+      }
+    }
+    return telephone.toString();
+  }
+  
+  
+  /** method to determine that the telephone number is formatted the approriate way
+  @param telephoneNumber as a string
+  */
+public  boolean isFormatted(String telephoneNumber)
+{
+	boolean valid; // Flag to indicate valid format
+
+// Determine whether telephoneNumber is properly formatted.
+	if (telephoneNumber.length() == formattedTelephoneNumberLength && telephoneNumber.charAt(3) == '-' && telephoneNumber.charAt(7) == '-'){
+		valid = true;
+			} else {
+      	valid = false;
+    				}
+  return valid;
+	}
+
+  /** method to unformat a telephoneNumber. 
+  @param telephoneNumber as a string
+  */
+public String unformat(String telephoneNumber)
+{
+	// Create a StringBuilder initialized with str.
+	StringBuilder strb = new StringBuilder(telephoneNumber);
+
+	// If the argument is properly formatted, then
+	// unformat it.
+	if (isFormatted(telephoneNumber))
+	{
+	// First, delete the left paren at position 0.
+	strb.deleteCharAt(3);
+
+	// Next, delete the right paren. Because of the
+	// previous deletion it is now located at
+	// position 3.
+	strb.deleteCharAt(8);
+	}
+
+	// Return the unformatted string.
+	return strb.toString();
+	}
+  
+	}
